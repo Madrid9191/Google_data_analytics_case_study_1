@@ -1,0 +1,44 @@
+#Total trips per month
+t_m <- c_t %>%
+      group_by(month, member_casual) %>%
+      summarize(total_trips = n()) %>%
+      arrange(member_casual)
+#Total trips per day
+t_d <- c_t %>%
+    group_by(day_week, member_casual) %>%
+    summarize(total_trips = n()) %>%
+    arrange(member_casual)
+#Total trips per hour
+t_h <- c_t %>%
+     mutate(hour_of_day = hour(started_at)) %>%
+     group_by(hour_of_day, member_casual) %>%
+     summarize(total_trips = n()) %>%
+     arrange(member_casual)
+#Average trip duration per month
+rl_m <- c_t %>%
+     group_by(month, member_casual) %>%
+     summarize(avg_ride_duration = mean(ride_length)) %>%
+     arrange(member_casual)
+#Average trip duration per day
+rl_w <- c_t %>%
+     group_by(day_week, member_casual) %>%
+     summarize(avg_ride_duration = mean(ride_length)) %>%
+     arrange(member_casual)
+#Average trip duration per hour
+rl_h <- c_t %>%
+     mutate(hour_of_day = hour(started_at)) %>%
+     group_by(hour_of_day, member_casual) %>%
+     summarize(avg_ride_duration = mean(ride_length)) %>%
+     arrange(member_casual)
+#Average trips per starting station
+start_station_m <- c_t %>%
+     group_by(start_station_name, member_casual) %>%
+     summarize(start_lat = mean(start_lat),
+               start_lng = mean(start_lng),
+               total_trips = n())
+#Average trips per ending station
+end_station_m <- c_t %>%
+     group_by(end_station_name, member_casual) %>%
+     summarize(end_lat = mean(end_lat),
+               end_lng = mean(end_lng),
+               total_trips = n())
