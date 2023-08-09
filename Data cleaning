@@ -1,0 +1,17 @@
+# Delete values less than 16 in the Ride_id_length column
+c_t <- subset(c_t_2, ride_id_length >= 16)
+
+#Clear missing data in start_station_name, start_station_id, end_station_name, end_station_id, end_lat and end_lng columns
+c_t <- c_t %>%
+     filter(complete.cases(start_station_name))
+
+c_t <- c_t %>%
+     filter(complete.cases(end_station_name))
+
+#Delete values greater than 1440 and less than 1 in the ride_legth column
+c_t <- c_t %>%
+    filter(ride_length < 1440)
+
+
+c_t <- c_t %>%
+     filter(ride_length > 1)
