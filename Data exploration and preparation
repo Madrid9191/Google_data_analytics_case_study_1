@@ -1,0 +1,41 @@
+# Combination of the data (from X202202 to X202212)
+c_t <- rbind(X202202_divvy_tripdata, X202203_divvy_tripdata, X202204_divvy_tripdata, X202205_divvy_tripdata, X202206_divvy_tripdata, X202207_divvy_tripdata, X202208_divvy_tripdata, X202209_divvy_tripdata, X202210_divvy_tripdata, X202211_divvy_tripdata, X202212_divvy_tripdata)
+
+#Transform the columns started_at and ended_at to date format
+c_t$ended_at <- as.POSIXct(c_t$ended_at, format = "%Y-%m-%d %H:%M:%S")
+c_t$started_at <- as.POSIXct(c_t$started_at, format = "%Y-%m-%d %H:%M:%S")
+
+X202201_divvy_tripdata$ended_at <- as.POSIXct(X202201_divvy_tripdata$ended_at, format = "%d/%m/%Y %H:%M")
+X202201_divvy_tripdata$started_at <- as.POSIXct(X202201_divvy_tripdata$started_at, format = "%d/%m/%Y %H:%M")
+
+# Join both tables (X202201 and c_t)
+c_t <- rbind(c_t, X202201_divvy_tripdata)
+
+#Search for missing and duplicate data
+skim_without_charts(c_t)
+
+#Create column Ride_id_length
+c_t$ride_id_length <- nchar(c_t$ride_id)
+
+#Find values greater than and less than 16 in the Ride_id_length column
+num_rows_greater_than_16 <- sum(c_t$ride_id_length > 16)
+num_rows_less_than_16 <- sum(c_t$ride_id_length < 16)
+
+#Create ride_length column
+c_t$ride_length <- as.numeric(difftime(c_t$ended_at, c_t$started_at, units = "mins"))
+
+#Find values equal to or greater than 1440 minutes and values equal to or less than one minute
+longer_than_a_day <- c_t %>%
+    mutate(time_diff_minutes = as.numeric(difftime(ended_at, started_at, units = "mins"))) %>%
+    filter(time_diff_minutes >= 1440) %>%
+    summarise(longer_than_a_day = n())
+
+less_than_a_minute <- c_t %>%
+      mutate(time_diff_minutes = as.numeric(difftime(ended_at, started_at, units = "mins"))) %>%
+      filter(time_diff_minutes <= 1) %>%
+      summarise(less_than_a_minute = n())
+
+#Create the week_day and month columns
+c_t$day_week <- weekdays(c_t$ended_at)
+
+c_t$month <- months(c_t$ended_at)
