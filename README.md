@@ -10,7 +10,7 @@ Data source: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html
 
 Upload files: [Upload files](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Upload%20files)
 
-[Data exploration and preparation](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20exploration%20and%20preparation)
+[Data exploration](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20exploration%20and%20preparation)
 
 [Data cleaning](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20cleaning)
 
@@ -50,7 +50,7 @@ Three questions will guide the future marketing program:
 
 Moreno has assigned me the first question to answer: How do annual members and casual riders use Cyclistic bikes differently?
 
-
+## Prepare
 ### Data source
 
 I will analyze and identify trends with Cyclistic's historical trip data from January 2022 to December 2022 which can be downloaded at [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). Data provided by Motivate International Inc. under this [license](https://ride.divvybikes.com/data-license-agreement).
@@ -67,11 +67,11 @@ R is used to combine multiple data sets into one and clean it.
 
 Reason: A worksheet in Microsoft Excel can only have 1048576 rows because it cannot handle large amounts of data. And the Cyclistic dataset contains more than 5.6 million rows.
 
-## Data exploration and preparation
+### Data exploration
 
 R code: [Upload files](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Upload%20files)
 
-R code: [Data exploration and preparation](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20exploration%20and%20preparation)
+R code: [Data exploration](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20exploration%20and%20preparation)
 
 The 12 cvs files were uploaded as tables. Exploring the data allowed me to realize that the columns started_at and ended_at should be in date format but are in character format and also that table X202201 has a date format d/m/Y H: m and the other tables have a date format Y-m-d H: m: s. So first the tables from X202202 to X202212 were combined in a new table called c_t and then the format of the columns started_at and ended_at was changed to date type for both table X202201 and table c_t, later both tables were combined in the table c_t.
 
