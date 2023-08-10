@@ -8,7 +8,7 @@ Welcome to the Cyclistic bike-share analysis case study! In this case study, I w
 
 Data source: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
-Upload files: [Upload files](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Upload%20files)
+[Upload files](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Upload%20files)
 
 [Data exploration](https://github.com/Madrid9191/Google_data_analytics_case_study_1/blob/main/Data%20exploration%20and%20preparation)
 
